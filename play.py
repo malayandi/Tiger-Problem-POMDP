@@ -1,7 +1,11 @@
 """
 Runs an instance of the tiger game. Command line input has the following format:
 
-python play.py ["AI"/"Human"] ["MAX_TIME"]
+python play.py ["AI"/"Human"] [MAX_TIME]
+
+If playing with a human player, the user will be prompted with "What action
+would you like to make? "
+The options are "left", "right" or "listen"
 """
 
 import sys
@@ -25,7 +29,7 @@ def play(player, max_time):
             move = player.pick_action()
         reward, observation = game.respond(move)
         player.update_observation(observation)
-        if move == "Listen":
+        if move == "listen":
             tiger_sound(observation)
         player.update_reward(reward)
         print("You received a reward of " + str(reward))
