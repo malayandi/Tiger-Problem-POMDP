@@ -1,11 +1,14 @@
 """
 Runs an instance of the tiger game. Command line input has the following format:
 
-python play.py ["AI"/"Human"] [MAX_TIME]
+python play.py [player] [max_time]
 
-If playing with a human player, the user will be prompted with "What action
-would you like to make? "
-The options are "left", "right" or "listen"
+player: The options are "Human" or "AI". If playing with a human player, the
+user will be prompted with "What action would you like to make? " The options
+are "left", "right" or "listen". If playing with an AI player, the player will
+player according to the predetermined strategy.
+
+max_time: The number of time steps over which the game is played.
 """
 
 import sys
