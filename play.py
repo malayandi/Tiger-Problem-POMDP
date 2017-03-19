@@ -25,6 +25,7 @@ def play(player, max_time):
     elif player == "Human":
         player = Human_Agent()
     while time < max_time:
+        print("Step " + str(time) + ":")
         if isinstance(player, Human_Agent):
             move = input("What action would you like to make? ")
             move = player.pick_action(move)
@@ -33,11 +34,12 @@ def play(player, max_time):
         reward, observation = game.respond(move)
         player.update_observation(observation)
         if move == "listen":
+            print("You chose to listen!")
             tiger_sound(observation)
         player.update_reward(reward)
-        print("You received a reward of " + str(reward))
+        print("You received a reward of " + str(reward) + "\n")
         time += 1
-    print("Total Reward: " + str(player.get_reward()))
+    print("Game over! Total Reward: " + str(player.get_reward()))
 
 def tiger_sound(observation):
     door = "left" if observation == "TL" else "right"
