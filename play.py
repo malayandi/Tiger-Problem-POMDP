@@ -25,8 +25,10 @@ def play(player, max_time):
     elif player == "Human":
         player = Human_Agent()
     while time < max_time:
-        print("Step " + str(time) + ":")
+        print("Step " + str(time + 1) + ":")
         if isinstance(player, Human_Agent):
+            if time == max_time - 1:
+                print("This is your last move! Pick wisely!")
             move = input("What action would you like to make? ")
             move = player.pick_action(move)
         else:
