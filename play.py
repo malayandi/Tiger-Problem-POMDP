@@ -5,8 +5,8 @@ python play.py [player] [max_time]
 
 player: The options are "Human" or "AI". If playing with a human player, the
 user will be prompted with "What action would you like to make? " The options
-are "left", "right" or "listen". If playing with an AI player, the player will
-player according to the predetermined strategy.
+are "left", "right" or "listen". The options are case sensitive. If playing with
+an AI player, the player will play according to the predetermined strategy.
 
 max_time: The number of time steps over which the game is played.
 """
@@ -28,7 +28,7 @@ def play(player, max_time):
         print("Step " + str(time + 1) + ":")
         if isinstance(player, Human_Agent):
             if time == max_time - 1:
-                print("This is your last move! Pick wisely!")
+                print("> This is your last move! Pick wisely!")
             move = input("What action would you like to make? ")
             move = player.pick_action(move)
         else:
@@ -36,16 +36,16 @@ def play(player, max_time):
         reward, observation = game.respond(move)
         player.update_observation(observation)
         if move == "listen":
-            print("You chose to listen!")
+            print("> You chose to listen!")
             tiger_sound(observation)
         player.update_reward(reward)
-        print("You received a reward of " + str(reward) + "\n")
+        print("> You received a reward of " + str(reward) + "\n")
         time += 1
-    print("Game over! Total Reward: " + str(player.get_reward()))
+    print("Game over! Total Reward: " + str(player.get_reward()) + "\n")
 
 def tiger_sound(observation):
     door = "left" if observation == "TL" else "right"
-    print("The tiger sound came from the " + door + " door")
+    print("> The tiger sound came from the " + door + " door")
 
 if __name__ == "__main__":
     args = sys.argv

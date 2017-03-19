@@ -42,9 +42,9 @@ class Game:
             observation = observations[index]
 
             if self._state == action:
-                reward = 10
-            else:
                 reward = -100
+            else:
+                reward = 10
             # reinitializing state
             rand = np.random.choice([0, 1])
             self._state = states[rand]
