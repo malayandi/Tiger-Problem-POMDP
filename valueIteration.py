@@ -2,6 +2,7 @@ import numpy as np
 
 from model import *
 from parameters import *
+from pruning import *
 
 """
 Returns the optimal action after evaluating policies using value iteration.
@@ -19,13 +20,13 @@ def valueIteration(initial_set, max_t = 1):
         t += 1
         if t == max_t:
             break
-        old_set = current_set
+        old_set, optimal_map = prune(current_set)
         current_set = []
         for action in actions:
-            mapping = {}
             for left_plan in old_set:
-                mapping["left"] = left_plan
                 for right_plan in old_set:
+                    mapping = {}
+                    mapping["left"] = left_plan
                     mapping["right"] = right_plan
                     plan = (action, mapping, [])
                     current_set.append(plan)
@@ -43,7 +44,11 @@ def pickBestAction(b_left, current_set):
         values.append(value)
     opt_index = np.argmax(values)
     action = current_set[opt_index][0]
-    print(values)
+    #count = 0
+    #for i in range(len(current_set)):
+    #    if values[i] == max(values):
+    #        count += 1
+    #print(count)
     return action
 
 """
@@ -70,16 +75,11 @@ def evaluatePlan(plan):
         value = rwrd + GAMMA * sum_over_states
         values.append(value)
 
-    new_plan = (plan[0], plan[1], values)
+    new_plan = (action, map_to_old_plans, values)
     return new_plan
 
-"""
-Evaluates a plan over belief space.
-"""
-def evaluateBeliefState(b_left, alpha):
-    belief = np.array([b_left, 1-b_left])
-    alpha = np.array(alpha)
-    return belief.dot(alpha)
 
-current_set = valueIteration(step_1_set, max_t = 2)
-print(pickBestAction(0, current_set))
+current_set = valueIteration(step_1_set, max_t = 7)
+parsimonius_set, optimal_map = prune(current_set)
+action_map = createOptimalActionMap(current_set, optimal_map)
+print(action_map)

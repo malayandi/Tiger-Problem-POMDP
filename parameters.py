@@ -27,7 +27,7 @@ prob_obs = np.array([p_correct_obs, 1-p_correct_obs])
 ### Value Iteration Parameters
 
 # The discount factor used in value iteration
-GAMMA = 0.9
+GAMMA = 1
 
 # each plan is a triple
 # (action, map from observation to plans in old set, alpha vector)
