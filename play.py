@@ -17,7 +17,8 @@ import numpy as np
 from game import Game
 from agent import Agent, AI_Agent, Human_Agent
 
-def play(player, max_time):
+# _state variable exists for testing only - do not initialize
+def play(player, max_time, _state = None):
     time = 0
     game = Game()
     if player == "AI":
@@ -33,7 +34,11 @@ def play(player, max_time):
             move = player.pick_action(move)
         else:
             move = player.pick_action()
+        print("You chose to make the move: " + str(move))
         reward, observation = game.respond(move)
+        if move not in ("listen", "left", "right"):
+            print("> You have attempted to deceive the game. You automatically lose. Cheaters never win.")
+            sys.exit()
         player.update_observation(observation)
         if move == "listen":
             print("> You chose to listen!")
@@ -44,8 +49,7 @@ def play(player, max_time):
     print("Game over! Total Reward: " + str(player.get_reward()) + "\n")
 
 def tiger_sound(observation):
-    door = "left" if observation == "TL" else "right"
-    print("> The tiger sound came from the " + door + " door")
+    print("> The tiger sound came from the " + observation + " door")
 
 if __name__ == "__main__":
     args = sys.argv
