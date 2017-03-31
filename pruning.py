@@ -28,7 +28,7 @@ def prune(plan_set, b_jump = 0.01):
     alpha_set = formAlphaSet(plan_set)
     parsimonius_set = []
     optimal_map = {}
-    for b_left in np.arange(0, 1.01, b_jump):
+    for b_left in np.arange(0, 1.001, b_jump):
         values = []
         for i in range(len(alpha_set)):
             values.append(evaluateBeliefState(b_left, alpha_set[i]))
@@ -53,6 +53,6 @@ def createOptimalActionMap(plan_set, optimal_map):
         action = plan[0]
         smallest = min(optimal_map[i])
         biggest = max(optimal_map[i])
-        action_map.append((action, [str(round(smallest, 2)), str(round(biggest, 2))]))
+        action_map.append((action, [str(round(smallest, 3)), str(round(biggest, 3))]))
     action_map = sorted(action_map, key = lambda x : x[1])
     return action_map
