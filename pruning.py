@@ -24,7 +24,7 @@ optimal over some interval in belief space and returns a dictionary mapping
 each conditional plan's index to the set of b_left over which it is optimal.
 b_jump is the size of each jump in belief space in the linear program.
 """
-def prune(plan_set, b_jump = 0.001):
+def prune(plan_set, b_jump = 0.01):
     alpha_set = formAlphaSet(plan_set)
     parsimonius_set = []
     optimal_map = {}

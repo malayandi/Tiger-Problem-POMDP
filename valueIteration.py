@@ -77,7 +77,7 @@ def evaluatePlan(plan):
     return new_plan
 
 
-current_set = valueIteration(step_1_set, max_t = 4)
+current_set = valueIteration(step_1_set, max_t = 20)
 parsimonius_set, optimal_map = prune(current_set)
 action_map = createOptimalActionMap(current_set, optimal_map)
 print(action_map)
