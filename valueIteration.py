@@ -6,8 +6,6 @@ from pruning import *
 
 """
 Returns the optimal action after evaluating policies using value iteration.
-
-TEMPORARILY, only works for t = 1.
 """
 def valueIteration(initial_set, max_t = 1):
     old_set = []
@@ -20,7 +18,6 @@ def valueIteration(initial_set, max_t = 1):
         t += 1
         if t == max_t:
             break
-        #old_set = current_set
         old_set, optimal_map = prune(current_set)
         current_set = []
         for action in actions:
@@ -80,7 +77,7 @@ def evaluatePlan(plan):
     return new_plan
 
 
-current_set = valueIteration(step_1_set, max_t = 30)
+current_set = valueIteration(step_1_set, max_t = 4)
 parsimonius_set, optimal_map = prune(current_set)
 action_map = createOptimalActionMap(current_set, optimal_map)
 print(action_map)

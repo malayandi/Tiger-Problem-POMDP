@@ -24,7 +24,7 @@ optimal over some interval in belief space and returns a dictionary mapping
 each conditional plan's index to the set of b_left over which it is optimal.
 b_jump is the size of each jump in belief space in the linear program.
 """
-def prune(plan_set, b_jump = 0.01):
+def prune(plan_set, b_jump = 0.001):
     alpha_set = formAlphaSet(plan_set)
     parsimonius_set = []
     optimal_map = {}
@@ -53,6 +53,6 @@ def createOptimalActionMap(plan_set, optimal_map):
         action = plan[0]
         smallest = min(optimal_map[i])
         biggest = max(optimal_map[i])
-        action_map.append((action, [str(round(smallest, 3)), str(round(biggest, 3))]))
+        action_map.append((action, [str(round(smallest, 2)), str(round(biggest, 2))]))
     action_map = sorted(action_map, key = lambda x : x[1])
     return action_map
