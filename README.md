@@ -1,5 +1,5 @@
 # Tiger-Problem-POMDP
-Implementation of POMDP algorithms (value iteration and point-based value iteration) on the tiger problem, as described in Littman, Cassandra and Kaelbling (1994).
+Implementation of POMDP algorithms (value iteration and point-based value iteration) on the tiger problem, as described in Littman, Cassandra and Kaelbling (1998).
 
 ## Usage
 
@@ -23,16 +23,16 @@ To have an AI play and solve the game exactly using value iteration, run the fol
 	
 ## Running Your Own Experiments
 
-It is fairly straightforward to run your own experiments with this code. The core files are organized as follows (files whose names are italicized need not be changed):
+It is fairly straightforward to run your own experiments with this code. The core files are organized as follows (files that are starred need not be changed):
 
-* *play.py*: The main file that runs of the game.
-* *game.py*: Keeps track of the agent's overall performane in the game.
-* model.py: Specifies the uncertainty dynamics of the game, including the transition distribution, observation distribution and reward function.
-* parameters.py: Specifies the parameters of the game, including the set of states, set of actions available to the agent, set of observations, discount factor etc.
-* agent.py: Contains subclasses for Human/ AI agents. For AI agents, specifies the initial belief and solver to use (i.e. Value Iteration or Point-Based Value Iteration).
-* valueIteration.py: The POMDP Value Iteration algorithm.
-* pruning.py: The pruning method used in valueIteration.py
-* pbvi.py: The Point-Based Value Iteration algorithm.
+* `play.py`: The main file that runs of the game.
+* `game.py`: Keeps track of the agent's overall performane in the game.
+* `model.py`: Specifies the uncertainty dynamics of the game, including the transition distribution, observation distribution and reward function.
+* `parameters.py`: Specifies the parameters of the game, including the set of states, set of actions available to the agent, set of observations, discount factor etc.
+* `agent.py`: Contains subclasses for Human/ AI agents. For AI agents, specifies the initial belief and solver to use (i.e. Value Iteration or Point-Based Value Iteration).
+* `valueIteration.py`: The POMDP Value Iteration algorithm.
+* `pruning.py`: The pruning method used in valueIteration.py
+* `pbvi.py`: The Point-Based Value Iteration algorithm.
 
 ## Contact
 
